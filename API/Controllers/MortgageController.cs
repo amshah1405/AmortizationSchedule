@@ -1,5 +1,6 @@
 ﻿using API.Interface;
-using API.Model; 
+using API.Model;
+using DataLayer.Entity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -18,12 +19,19 @@ namespace API.Controllers
         [HttpPost("calculate")]
         public IActionResult CalculateMonthlyPayment([FromBody] MortgageRequest request)
         {
-            throw new NotImplementedException();
-
+            var mortgageDetail = new MortgageDetail(request.LoanAmount, request.AnnualInterestRate, request.LoanTerm, request.StartDate);
+            List<MonthlyPaymentDetail>  monthlyPaymentDetailsList = _mortgageService.CalculateMortgage(mortgageDetail); 
+            return Ok(monthlyPaymentDetailsList); 
         }
 
         [HttpGet("retrieveHistory")]
         public IActionResult GetMortgageHistory()
+        {
+            throw new NotImplementedException();
+        }
+
+        [HttpGet("retrieveAmortizationHistory")]
+        public IActionResult GetMortgageAmortizatoinHistory()
         {
             throw new NotImplementedException();
         }

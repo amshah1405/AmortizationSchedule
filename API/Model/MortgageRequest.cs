@@ -2,9 +2,9 @@
 {
     public class MortgageRequest
     {
-        public decimal LoanAmount { get; }
-        public decimal AnnualInterestRate { get; }
-        public int LoanTermInMonths { get; }
+        public double LoanAmount { get; }
+        public float AnnualInterestRate { get; }
+        public int LoanTerm { get; }
         public DateTime StartDate { get; }
     }
 }
