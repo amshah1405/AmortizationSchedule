@@ -1,10 +1,10 @@
 ﻿using DataLayer.Entity;
 
-namespace DataLayer
+namespace DataLayer.Repository
 {
     public interface IMortgageRepository
     {
         int SaveMortgageDetail(MortgageDetail mortgageDetail);
-                
+
     }
 }

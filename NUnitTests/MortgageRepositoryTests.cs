@@ -1,5 +1,6 @@
-﻿using DataLayer;
+﻿using DataLayer.DBContext;
 using DataLayer.Entity;
+using DataLayer.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Moq;

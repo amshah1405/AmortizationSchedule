@@ -1,5 +1,6 @@
 using API.Interface;
-using DataLayer;
+using DataLayer.DBContext;
+using DataLayer.Repository;
 using Microsoft.EntityFrameworkCore;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 

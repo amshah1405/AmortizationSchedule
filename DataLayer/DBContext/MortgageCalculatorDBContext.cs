@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System.Reflection.Metadata;
 
-namespace DataLayer
+namespace DataLayer.DBContext
 {
     public class MortgageCalculatorDBContext : DbContext, IMortgageCalculatorDBContext
     {
@@ -23,7 +23,7 @@ namespace DataLayer
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
-        { 
+        {
 
             modelBuilder.Entity<MortgageDetail>()
        .HasMany(e => e.mortagePaymentDetails)
@@ -31,7 +31,7 @@ namespace DataLayer
        .HasForeignKey(e => e.mortageId);
             base.OnModelCreating(modelBuilder);
         }
-      
-         
+
+
     }
 }

@@ -1,6 +1,7 @@
 ﻿using API.Interface;
-using DataLayer;
-using DataLayer.Entity; 
+using DataLayer.Entity;
+using DataLayer.Repository;
+
 namespace API
 {
     public class MortgageService : IMortgageService
@@ -54,7 +55,7 @@ namespace API
 
         public void SaveMortgageDetails(MortgageDetail mortgageDetail ) {
 
-            int mortgageId = _mortgageRepository.SaveMortgageDetail(mortgageDetail); 
+              _mortgageRepository.SaveMortgageDetail(mortgageDetail); 
         }
 
     }

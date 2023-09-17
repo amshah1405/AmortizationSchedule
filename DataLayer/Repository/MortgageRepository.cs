@@ -1,6 +1,7 @@
-﻿using DataLayer.Entity;
+﻿using DataLayer.DBContext;
+using DataLayer.Entity;
 
-namespace DataLayer
+namespace DataLayer.Repository
 {
     public class MortgageRepository : IMortgageRepository
     {
@@ -13,9 +14,9 @@ namespace DataLayer
             _dbContext.MortgageDetail.Add(mortgageDetail);
             _dbContext.SaveChanges();
 
-           return mortgageDetail.mortgageID;
+            return mortgageDetail.mortgageID;
 
-        } 
-      
+        }
+
     }
 }
