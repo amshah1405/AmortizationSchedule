@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DataLayer.Migrations
 {
-    [DbContext(typeof(IMortgageCalculatorDBContext))]
-    [Migration("20230917061320_InitialCreate")]
+    [DbContext(typeof(MortgageCalculatorDBContext))]
+    [Migration("20230917190230_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
