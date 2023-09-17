@@ -16,7 +16,7 @@ namespace API
             builder.Services.AddControllers();
             builder.Services.AddScoped<IMortgageService, MortgageService>(); 
             builder.Services.AddScoped<IMortgageRepository, MortgageRepository>();
-      //      builder.Services.AddScoped<IMortgageCalculatorDBContext, MortgageCalculatorDBContext>();
+            builder.Services.AddScoped<IMortgageCalculatorDBContext, MortgageCalculatorDBContext>();
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
