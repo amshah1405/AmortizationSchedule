@@ -15,7 +15,7 @@ namespace DataLayer.Entity
         public double annualInterestRate { get; set; }
         public int loanTerm { get; set; }
         public DateTime startDate { get; set; }
-        public ICollection<MonthlyPaymentDetail> mortagePaymentDetails { get; } = new List<MonthlyPaymentDetail>();
+        public ICollection<MonthlyPaymentDetail> mortagePaymentDetails { get; set; } = new List<MonthlyPaymentDetail>();
 
         public MortgageDetail() { }
         public MortgageDetail(  double loanAmount, double annualInterestRate, int loanTerm, DateTime startDate)

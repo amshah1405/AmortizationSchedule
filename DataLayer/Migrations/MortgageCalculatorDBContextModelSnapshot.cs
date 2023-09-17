@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DataLayer.Migrations
 {
-    [DbContext(typeof(MortgageCalculatorDBContext))]
+    [DbContext(typeof(IMortgageCalculatorDBContext))]
     partial class MortgageCalculatorDBContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

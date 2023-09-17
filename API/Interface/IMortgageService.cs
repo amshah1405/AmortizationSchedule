@@ -8,6 +8,8 @@ namespace API.Interface
 
         List<MonthlyPaymentDetail> CalculateMortgage(MortgageDetail mortgageDetail);
 
-        void SaveMortgageHistory(MortgageDetail mortgageDetail, List<MonthlyPaymentDetail> monthlyPaymentDetails);
+        void SaveMortgageDetails(MortgageDetail mortgageDetail );
+
+
     }
 }

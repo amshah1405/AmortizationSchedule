@@ -30,10 +30,12 @@ namespace API.Controllers
             throw new NotImplementedException();
         }
 
-        [HttpGet("retrieveAmortizationHistory")]
-        public IActionResult GetMortgageAmortizatoinHistory()
+        [HttpPost("saveMortgaeHistory")]
+        public IActionResult SaveMortgageDetails(MortgageDetail mortgageDetail)
         {
-            throw new NotImplementedException();
+            _mortgageService.SaveMortgageDetails(mortgageDetail);
+
+            return Ok();
         }
     }
 }

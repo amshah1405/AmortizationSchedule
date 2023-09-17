@@ -5,13 +5,14 @@ namespace API
 {
     public class MortgageService : IMortgageService
     {
-        private readonly MortgageCalculatorDBContext _dbContext;
-
+        private readonly IMortgageRepository _mortgageRepository;
+        public MortgageService(IMortgageRepository mortgageRepository) 
+        {
+            _mortgageRepository = mortgageRepository;
+        }
         public MortgageService()
         {
-        }
-
-        public MortgageService(MortgageCalculatorDBContext dbContext) { _dbContext = dbContext; }
+        } 
 
         public List<MonthlyPaymentDetail> CalculateMortgage(MortgageDetail mortgageDetail)
         {  
@@ -42,8 +43,7 @@ namespace API
 
             }
 
-            SaveMortgageHistory(mortgageDetail, monthlyPaymentList);
-
+      
             return monthlyPaymentList;
         }
 
@@ -52,20 +52,10 @@ namespace API
             throw new NotImplementedException();
         }
 
-        public void SaveMortgageHistory(MortgageDetail mortgageDetail, List<MonthlyPaymentDetail> monthlyPaymentDetails)
-        {
-           
-            _dbContext.MortgageDetail.Add(mortgageDetail);
-            _dbContext.SaveChanges();
+        public void SaveMortgageDetails(MortgageDetail mortgageDetail ) {
 
-            int mortgageId = mortgageDetail.mortgageID;
-
-            foreach(MonthlyPaymentDetail monthlyPaymentDetail in monthlyPaymentDetails) {
-                monthlyPaymentDetail.mortageId = mortgageId;
-                _dbContext.MonthlyPaymentDetails.Add(monthlyPaymentDetail);
-            }
-          
-            _dbContext.SaveChanges();
+            int mortgageId = _mortgageRepository.SaveMortgageDetail(mortgageDetail); 
         }
+
     }
 }
