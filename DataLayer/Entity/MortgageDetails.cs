@@ -1,22 +1,25 @@
 ﻿
 
-using System.Diagnostics;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations; 
 
 namespace DataLayer.Entity
 {
     
     public class MortgageDetail
     {
-     
-        public int MortgageID { get; }
-        public double loanAmount { get; }
-        public double annualInterestRate { get; }
-        public int loanTerm { get; }
-        public DateTime startDate { get; }
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int mortgageID { get; set; }
+        public double loanAmount { get; set; }
+        public double annualInterestRate { get; set; }
+        public int loanTerm { get; set; }
+        public DateTime startDate { get; set; }
+        public ICollection<MonthlyPaymentDetail> mortagePaymentDetails { get; } = new List<MonthlyPaymentDetail>();
 
+        public MortgageDetail() { }
         public MortgageDetail(  double loanAmount, double annualInterestRate, int loanTerm, DateTime startDate)
-        {
-            // MortgageID = mortgageID;
+        {  
             this.loanAmount = loanAmount;
             this.annualInterestRate = annualInterestRate;
             this.loanTerm = loanTerm;

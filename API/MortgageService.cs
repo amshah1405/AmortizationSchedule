@@ -1,12 +1,20 @@
 ﻿using API.Interface;
+using DataLayer;
 using DataLayer.Entity; 
 namespace API
 {
     public class MortgageService : IMortgageService
     {
-        public List<MonthlyPaymentDetail> CalculateMortgage(MortgageDetail mortgageDetail)
-        {    
+        private readonly MortgageCalculatorDBContext _dbContext;
 
+        public MortgageService()
+        {
+        }
+
+        public MortgageService(MortgageCalculatorDBContext dbContext) { _dbContext = dbContext; }
+
+        public List<MonthlyPaymentDetail> CalculateMortgage(MortgageDetail mortgageDetail)
+        {  
             if(mortgageDetail.loanAmount == 0 || mortgageDetail.annualInterestRate == 0 || mortgageDetail.loanTerm == 0)
                 return null;
 
@@ -29,10 +37,12 @@ namespace API
                 totalInterest += monthlyInterestPaid;
                 totalPayment += monthlyPayment;
 
-                monthlyPaymentList.Add(new MonthlyPaymentDetail(mortgageDetail.startDate.AddMonths(month).ToShortDateString(), Math.Round(remainingBalance,2), Math.Round(principalAmt,2), Math.Round(monthlyInterestPaid,2),
+                monthlyPaymentList.Add(new MonthlyPaymentDetail(mortgageDetail.startDate.AddMonths(month).Date, Math.Round(remainingBalance,2), Math.Round(principalAmt,2), Math.Round(monthlyInterestPaid,2),
                      Math.Round(monthlyPayment,2), Math.Round(totalInterest,2), Math.Round(totalPayment,2)));
 
-            } 
+            }
+
+            SaveMortgageHistory(mortgageDetail, monthlyPaymentList);
 
             return monthlyPaymentList;
         }
@@ -40,6 +50,22 @@ namespace API
         public List<MonthlyPaymentDetail> RetrieveMortgageHistory()
         {
             throw new NotImplementedException();
+        }
+
+        public void SaveMortgageHistory(MortgageDetail mortgageDetail, List<MonthlyPaymentDetail> monthlyPaymentDetails)
+        {
+           
+            _dbContext.MortgageDetail.Add(mortgageDetail);
+            _dbContext.SaveChanges();
+
+            int mortgageId = mortgageDetail.mortgageID;
+
+            foreach(MonthlyPaymentDetail monthlyPaymentDetail in monthlyPaymentDetails) {
+                monthlyPaymentDetail.mortageId = mortgageId;
+                _dbContext.MonthlyPaymentDetails.Add(monthlyPaymentDetail);
+            }
+          
+            _dbContext.SaveChanges();
         }
     }
 }
