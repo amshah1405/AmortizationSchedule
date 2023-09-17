@@ -19,7 +19,7 @@ namespace API.Controllers
         [HttpPost("calculate")]
         public IActionResult CalculateMonthlyPayment([FromBody] MortgageRequest request)
         {
-            var mortgageDetail = new MortgageDetail(request.LoanAmount, request.AnnualInterestRate, request.LoanTerm, request.StartDate);
+            var mortgageDetail = new MortgageDetail(request.loanAmount, request.annualInterestRate, request.loanTerm, request.startDate);
             List<MonthlyPaymentDetail>  monthlyPaymentDetailsList = _mortgageService.CalculateMortgage(mortgageDetail); 
             return Ok(monthlyPaymentDetailsList); 
         }

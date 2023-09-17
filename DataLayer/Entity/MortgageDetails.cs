@@ -8,7 +8,7 @@ namespace DataLayer.Entity
     public class MortgageDetail
     {
      
-      //  public int MortgageID { get; }
+        public int MortgageID { get; }
         public double loanAmount { get; }
         public double annualInterestRate { get; }
         public int loanTerm { get; }

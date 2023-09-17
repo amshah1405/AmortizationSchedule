@@ -9,7 +9,7 @@ namespace DataLayer.Entity
     public class MonthlyPaymentDetail
     {
        
-        public DateTime paymentDate { get; set; }
+        public string paymentDate { get; set; }
         public double remainingBalance { get; set; }
         public double principalAmt { get; set; }
         public double monthlyInterest { get; set; }
@@ -17,7 +17,7 @@ namespace DataLayer.Entity
         public double totalInterest { get; set; }
         public double totalPaid {  get; set; }
 
-        public MonthlyPaymentDetail(DateTime paymentDate, double remainingBalance, double principalAmt, double monthlyInterest, double monthlyPayment, double totalInterest, double totalPaid)
+        public MonthlyPaymentDetail(string paymentDate, double remainingBalance, double principalAmt, double monthlyInterest, double monthlyPayment, double totalInterest, double totalPaid)
         {
             this.paymentDate = paymentDate;
             this.remainingBalance = remainingBalance;

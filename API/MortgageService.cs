@@ -29,7 +29,8 @@ namespace API
                 totalInterest += monthlyInterestPaid;
                 totalPayment += monthlyPayment;
 
-                monthlyPaymentList.Add(new MonthlyPaymentDetail(mortgageDetail.startDate.AddMonths(month), remainingBalance, principalAmt, monthlyInterestPaid, monthlyPayment, totalInterest, totalPayment));
+                monthlyPaymentList.Add(new MonthlyPaymentDetail(mortgageDetail.startDate.AddMonths(month).ToShortDateString(), Math.Round(remainingBalance,2), Math.Round(principalAmt,2), Math.Round(monthlyInterestPaid,2),
+                     Math.Round(monthlyPayment,2), Math.Round(totalInterest,2), Math.Round(totalPayment,2)));
 
             } 
 
