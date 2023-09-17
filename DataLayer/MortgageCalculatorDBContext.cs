@@ -4,12 +4,16 @@ using System.Reflection.Metadata;
 
 namespace DataLayer
 {
-    public class MortgageCalculatorDBContext : DbContext
+    public class MortgageCalculatorDBContext : DbContext, IMortgageCalculatorDBContext
     {
         public MortgageCalculatorDBContext() { }
         public MortgageCalculatorDBContext(DbContextOptions<MortgageCalculatorDBContext> options) : base(options)
         {
         }
+
+        public DbSet<MortgageDetail> MortgageDetail { get; set; }
+        public DbSet<MonthlyPaymentDetail> MonthlyPaymentDetails { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
             if (!options.IsConfigured)
@@ -19,8 +23,7 @@ namespace DataLayer
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            
+        { 
 
             modelBuilder.Entity<MortgageDetail>()
        .HasMany(e => e.mortagePaymentDetails)
@@ -28,8 +31,7 @@ namespace DataLayer
        .HasForeignKey(e => e.mortageId);
             base.OnModelCreating(modelBuilder);
         }
-        public DbSet<MortgageDetail> MortgageDetail { get; set; } = null!;
-        public DbSet<MonthlyPaymentDetail> MonthlyPaymentDetails { get; set; } = null!;
+      
          
     }
 }
