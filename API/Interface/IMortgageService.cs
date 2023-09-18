@@ -4,7 +4,7 @@ namespace API.Interface
 {
     public interface IMortgageService
     {
-        List<MonthlyPaymentDetail> RetrieveMortgageHistory();
+        List<MortgageDetail> RetrieveMortgageHistory();
 
         List<MonthlyPaymentDetail> CalculateMortgage(MortgageDetail mortgageDetail);
 

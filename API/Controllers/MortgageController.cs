@@ -30,8 +30,8 @@ namespace API.Controllers
         [HttpGet("retrieveHistory")]
         public IActionResult GetMortgageHistory()
         {
-            List<MonthlyPaymentDetail> monthlyPaymentDetailsList = new List<MonthlyPaymentDetail>();
-            monthlyPaymentDetailsList.Add(new MonthlyPaymentDetail(DateTime.Today, 159322.65, 677.15, 466.67, 1143.81, 466.67, 1143.81));
+            List<MortgageDetail> monthlyPaymentDetailsList = _mortgageService.RetrieveMortgageHistory();
+
             return StatusCode(StatusCodes.Status200OK,  monthlyPaymentDetailsList);
         }
 

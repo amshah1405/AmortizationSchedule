@@ -48,9 +48,9 @@ namespace API
             return monthlyPaymentList;
         }
 
-        public List<MonthlyPaymentDetail> RetrieveMortgageHistory()
+        public List<MortgageDetail> RetrieveMortgageHistory()
         {
-            throw new NotImplementedException();
+            return _mortgageRepository.RetrieveMortgageHistory();
         }
 
         public void SaveMortgageDetails(MortgageDetail mortgageDetail ) {
