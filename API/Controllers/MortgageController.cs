@@ -2,6 +2,7 @@
 using API.Model;
 using DataLayer.Entity;
 using Microsoft.AspNetCore.Mvc;
+using System.Text.Json;
 
 namespace API.Controllers
 {
@@ -22,7 +23,8 @@ namespace API.Controllers
             var mortgageDetail = new MortgageDetail(request.loanAmount, request.annualInterestRate, request.loanTerm, request.startDate);
             List<MonthlyPaymentDetail>  monthlyPaymentDetailsList = _mortgageService.CalculateMortgage(mortgageDetail);
             mortgageDetail.mortagePaymentDetails = monthlyPaymentDetailsList;
-            return StatusCode(StatusCodes.Status200OK, mortgageDetail);
+            _mortgageService.SaveMortgageDetails(mortgageDetail);
+            return StatusCode(StatusCodes.Status201Created, mortgageDetail);
         }
 
         [HttpGet("retrieveHistory")]
@@ -33,13 +35,7 @@ namespace API.Controllers
             return StatusCode(StatusCodes.Status200OK,  monthlyPaymentDetailsList);
         }
 
-        [HttpPost("saveMortgaeHistory")]
-        public IActionResult SaveMortgageDetails(MortgageDetail mortgageDetail)
-        {
-            _mortgageService.SaveMortgageDetails(mortgageDetail);
-
-            return Ok();
-        }
+        
     }
 }
 
