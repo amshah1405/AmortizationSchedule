@@ -1,7 +1,8 @@
 using API.Interface;
 using DataLayer.DBContext;
 using DataLayer.Repository;
-using Microsoft.EntityFrameworkCore; 
+using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
 
 namespace API
 {
@@ -30,6 +31,12 @@ namespace API
                            .AllowAnyMethod();
                 });
             });
+
+            builder.Services.AddControllers().AddJsonOptions(options =>
+            {
+                options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
+            });
+
 
             var app = builder.Build();
              

@@ -34,7 +34,7 @@ export class NavMenu extends Component {
                             </NavItem>
                             
                             <NavItem>
-                                <NavLink tag={Link} className="text-dark" to="/monthlypayments">Mortgage History</NavLink>
+                                <NavLink tag={Link} className="text-dark" to="/mortgageHistory">Mortgage History</NavLink>
                             </NavItem> 
                              
                         </ul>

@@ -1,6 +1,6 @@
 
 import MortgageDetails from "./components/MortgageDetails";
-import MonthlyPaymentDetails from "./components/MonthlyPaymentList" 
+import MortgageHistory from "./components/MortgageHistory" 
 
 const AppRoutes = [
   {
@@ -9,8 +9,8 @@ const AppRoutes = [
   },
    
     {
-        path: '/monthlypayments',
-        element: <MonthlyPaymentDetails />
+        path: '/mortgageHistory',
+        element: <MortgageHistory />
     }
 ];
 
