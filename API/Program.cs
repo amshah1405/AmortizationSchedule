@@ -1,8 +1,7 @@
 using API.Interface;
 using DataLayer.DBContext;
 using DataLayer.Repository;
-using Microsoft.EntityFrameworkCore;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
+using Microsoft.EntityFrameworkCore; 
 
 namespace API
 {
@@ -22,6 +21,16 @@ namespace API
             builder.Services.AddSwaggerGen();
 
             builder.Services.AddDbContext<MortgageCalculatorDBContext>(options => options.UseSqlServer(connection));
+            builder.Services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(builder =>
+                {
+                    builder.AllowAnyOrigin()
+                           .AllowAnyHeader()
+                           .AllowAnyMethod();
+                });
+            });
+
             var app = builder.Build();
              
             if (app.Environment.IsDevelopment())
@@ -32,7 +41,7 @@ namespace API
                
             }
 
-
+            app.UseCors();
             app.UseHttpsRedirection();
 
             app.UseAuthorization();

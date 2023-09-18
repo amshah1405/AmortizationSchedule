@@ -20,14 +20,17 @@ namespace API.Controllers
         public IActionResult CalculateMonthlyPayment([FromBody] MortgageRequest request)
         {
             var mortgageDetail = new MortgageDetail(request.loanAmount, request.annualInterestRate, request.loanTerm, request.startDate);
-            List<MonthlyPaymentDetail>  monthlyPaymentDetailsList = _mortgageService.CalculateMortgage(mortgageDetail); 
-            return Ok(monthlyPaymentDetailsList); 
+            List<MonthlyPaymentDetail>  monthlyPaymentDetailsList = _mortgageService.CalculateMortgage(mortgageDetail);
+            mortgageDetail.mortagePaymentDetails = monthlyPaymentDetailsList;
+            return StatusCode(StatusCodes.Status200OK, mortgageDetail);
         }
 
         [HttpGet("retrieveHistory")]
         public IActionResult GetMortgageHistory()
         {
-            throw new NotImplementedException();
+            List<MonthlyPaymentDetail> monthlyPaymentDetailsList = new List<MonthlyPaymentDetail>();
+            monthlyPaymentDetailsList.Add(new MonthlyPaymentDetail(DateTime.Today, 159322.65, 677.15, 466.67, 1143.81, 466.67, 1143.81));
+            return StatusCode(StatusCodes.Status200OK,  monthlyPaymentDetailsList);
         }
 
         [HttpPost("saveMortgaeHistory")]
